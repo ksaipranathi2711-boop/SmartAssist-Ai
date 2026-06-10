@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% block title %}Analytics{% endblock %}
+{% block content %}
+<h1>Analytics</h1>
+<div class="grid-2">
+  <div class="card"><h2>Intents</h2><canvas id="intents"></canvas></div>
+  <div class="card"><h2>Sentiment</h2><canvas id="sent"></canvas></div>
+</div>
+<div class="card"><h2>Conversations per day</h2><canvas id="byday"></canvas></div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const intents = {{ intents|tojson }};
+const sentiments = {{ sentiments|tojson }};
+const byDay = {{ by_day|tojson }};
+new Chart(document.getElementById('intents'),{type:'bar',data:{labels:intents.map(i=>i.intent||'unknown'),datasets:[{label:'Count',data:intents.map(i=>i.c),backgroundColor:'#6366f1'}]}});
+new Chart(document.getElementById('sent'),{type:'doughnut',data:{labels:sentiments.map(s=>s.sentiment||'unknown'),datasets:[{data:sentiments.map(s=>s.c),backgroundColor:['#10b981','#ef4444','#9ca3af']}]}});
+new Chart(document.getElementById('byday'),{type:'line',data:{labels:byDay.map(d=>d.d),datasets:[{label:'Chats',data:byDay.map(d=>d.c),borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,.2)',fill:true,tension:.3}]}});
+</script>
+{% endblock %}

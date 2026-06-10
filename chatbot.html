@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+{% block title %}Chatbot{% endblock %}
+{% block content %}
+<h1>Chatbot</h1>
+<div class="chat">
+  <div id="messages" class="messages">
+    <div class="msg bot">Hi! I'm SmartAssist AI. Ask me anything about orders, refunds, accounts, or pricing.</div>
+  </div>
+  <form id="chatForm" class="composer">
+    <input id="chatInput" autocomplete="off" placeholder="Type your message..." required>
+    <button>Send</button>
+  </form>
+</div>
+{% endblock %}
+{% block scripts %}<script>initChat();</script>{% endblock %}

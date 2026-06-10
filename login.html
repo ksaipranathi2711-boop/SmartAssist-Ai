@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block title %}Login · SmartAssist AI{% endblock %}
+
+{% block auth %}
+<div class="login-wrap">
+  <form method="post" class="login-card">
+
+    <h1>⚡ SmartAssist <span>AI</span></h1>
+    <p class="muted">Customer Service Chatbot Console</p>
+
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% if msgs %}
+        {% for cat, m in msgs %}
+          <div class="flash {{cat}}">{{m}}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <label>
+      Username
+      <input name="username" required autofocus>
+    </label>
+
+    <label>
+      Password
+      <input name="password" type="password" required>
+    </label>
+
+    <button type="submit">Sign In</button>
+
+    <p style="margin-top:15px;text-align:center;">
+      Don't have an account?
+      <a href="{{ url_for('register') }}">Create Account</a>
+    </p>
+
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% block title %}FAQs{% endblock %}
+{% block content %}
+<h1>FAQs</h1>
+<form method="post" class="card form-inline">
+  <input name="question" placeholder="Question" required>
+  <input name="answer" placeholder="Answer" required>
+  <button>Add</button>
+</form>
+<div class="card">
+  {% for it in items %}
+  <details><summary>{{ it.question }} <a class="del" href="{{ url_for('faq_delete', fid=it.id) }}">delete</a></summary>
+    <p>{{ it.answer }}</p>
+  </details>
+  {% else %}<p class="muted">No FAQs yet.</p>{% endfor %}
+</div>
+{% endblock %}
