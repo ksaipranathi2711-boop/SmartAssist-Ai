@@ -5,9 +5,9 @@ Login: admin / admin123
 import os, sqlite3, json, datetime, re
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from models.chatbot_model import get_bot_reply
-from models.sentiment_model import analyze_sentiment
-from models.intent_classifier import classify_intent
+from chatbot_model import get_bot_reply
+from sentiment_model import analyze_sentiment
+from intent_classifier import classify_intent
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(APP_DIR, "database", "smartassist.db")
